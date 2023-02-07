@@ -1,0 +1,36 @@
+body {
+    margin: 10px;
+}
+
+#board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sub {
+    display: flex;
+}
+
+#first {
+    border-style: solid;
+    border-left-style: none;
+}
+
+#row {
+    width: 34px;
+    height: 37px;
+    border-bottom-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#second {
+    border-style: solid;
+}
+
+#third {
+    border-style: solid;
+    border-right-style: none;
+}
