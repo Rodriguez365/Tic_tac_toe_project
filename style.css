@@ -2,6 +2,72 @@ body {
     margin: 10px;
 }
 
+#choose_mode,
+#choose_marker,
+#player_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#choose_mode_contents {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #0000002b;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+#marker_contents {
+    background-color: orange;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+}
+
+#marker_contents>button {
+    text-align: center;
+    margin-right: 5px;
+    width: 64%;
+}
+
+#marker_contents>div {
+    text-align: center;
+    margin-top: 7px;
+    width: 155%;
+}
+
+button {
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: orange;
+}
+
+#marker_contents>div>button {
+    width: 50%;
+}
+
+#name_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #0000003b;
+    width: 35%;
+    padding: 15px;
+    border-radius: 10px;
+}
+
 #board {
     display: flex;
     justify-content: center;
@@ -17,7 +83,9 @@ body {
     border-left-style: none;
 }
 
-#row {
+#first>div,
+#second>div,
+#third>div {
     width: 34px;
     height: 37px;
     border-bottom-style: solid;
