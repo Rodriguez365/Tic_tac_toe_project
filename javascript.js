@@ -170,6 +170,10 @@ const get_player_name_form = function() {
     }
 }
 
+const multi = (a, b, c) => {
+    return Number(a) * Number(b) * Number(c);
+}
+
 const gameBoard = (function() {
     const startGame = () => {
         const board_main = document.querySelector("#board")
@@ -219,36 +223,29 @@ const gameBoard = (function() {
         let choice_reference = 0;
         let computer_choice = "1";
         let choice = ""
+        let winner_count = 0;
+
         sub_main.addEventListener("click", (e) => {
             if (e.target.textContent == "") {
+                winner_count += 1;
                 if (game_turn_counter == 0) {
                     e.target.textContent = player_details_array[1];
                     player_one_array.push(e.target.id)
                     console.log(player_one_array);
                     if (player_mode_select == "single player") {
-
-                        if (player_one_array[choice_reference] == "1") {
-                            computer_choice = "5"
-                            computer_target = document.getElementById(computer_choice)
-                            console.log(computer_choice);
-                            if (computer_target.textContent == "")
-                                computer_target.textContent = player_details_array[3]
-                            player_two_array.push(computer_choice)
-                            console.log(player_two_array);
-                            choice_reference += 1;
-
-                        } else if (player_one_array[choice_reference] == "9") {
-                            choice = "2,4,6,8".split(",");
+                        choice = "1,2,3,4,5,6,7,8,9".split(",");
+                        computer_choice = choice[Math.floor(Math.random() * choice.length)];
+                        computer_target = document.getElementById(computer_choice)
+                        console.log(computer_choice);
+                        while (computer_target.textContent != "" && winner_count < 9) {
                             computer_choice = choice[Math.floor(Math.random() * choice.length)];
                             computer_target = document.getElementById(computer_choice)
-                            console.log(computer_choice);
-                            if (computer_target.textContent == "")
-                                computer_target.textContent = player_details_array[3]
-                            player_two_array.push(computer_choice)
-                            console.log(player_two_array);
-
                         }
 
+                        computer_target.textContent = player_details_array[3]
+                        player_two_array.push(computer_choice)
+                        console.log(player_two_array);
+                        winner_count += 1;
 
                     } else {
                         game_turn_counter += 1;
@@ -260,6 +257,27 @@ const gameBoard = (function() {
                     player_two_array.push(e.target.id)
                     console.log(player_two_array);
                 }
+                if (winner_count == 5) {
+                    let player_one_multi = multi(player_one_array[0], player_one_array[1], player_one_array[2])
+                    if (player_one_multi == 28 || player_one_multi == 80 || player_one_multi == 162 || player_one_multi == 6 ||
+                        player_one_multi == 120 || player_one_multi == 504 || player_one_multi == 205 || player_one_multi == 45) {
+                        console.log("player 1 wins");
+                    }
+                } else if (winner_count == 6) {
+                    let player_one_multi = multi(player_one_array[0], player_one_array[1], player_one_array[2])
+                    let player_two_multi = multi(player_two_array[0], player_two_array[1], player_two_array[2])
+                    console.log(player_one_multi, player_two_multi);
+
+                    if (player_one_multi == 28 || player_one_multi == 80 || player_one_multi == 162 || player_one_multi == 6 ||
+                        player_one_multi == 120 || player_one_multi == 504 || player_one_multi == 205 || player_one_multi == 45) {
+                        console.log("player 1 wins");
+                    } else if (player_two_multi == 28 || player_two_multi == 80 || player_two_multi == 162 || player_two_multi == 6 ||
+                        player_two_multi == 120 || player_two_multi == 504 || player_two_multi == 205 || player_two_multi == 45) {
+                        console.log("player 2 wins");
+                    } else {
+                        console.log("its a tie");
+                    }
+                }
             }
         })
 
@@ -267,10 +285,11 @@ const gameBoard = (function() {
 
 
 
-    const winner = () => {
+    const stratergy = () => {
+
 
     }
-    return { startGame, winner }
+    return { startGame, stratergy }
 })()
 
 
