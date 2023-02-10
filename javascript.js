@@ -151,10 +151,10 @@ let player = "";
 it changes player value to player 2 and "player 2 enter name is displayed"  else it's not called at all. */
 const get_player_name_form = function() {
     if (player_one_counter < 1) {
-        player = "player 1:"
+        player = "Player 1:"
 
     } else {
-        player = "player 2:"
+        player = "Player 2:"
     }
     const form = document.querySelector("#player_form")
     const form_div = document.createElement("div")
@@ -259,7 +259,7 @@ const gameBoard = (function() {
         //when part of the board is clicked
         sub_main.addEventListener("click", (e) => {
             if (e.target.textContent == "") {
-                winner_count += 1;
+
                 /*if game_turn _counter == 0, means player1's turn and get player1's marker
                 from player_details_array else it's player2's turn */
                 if (game_turn_counter == 0) {
@@ -300,7 +300,6 @@ const gameBoard = (function() {
                     player_one_multi = multi(player_one_array[0], player_one_array[1], player_one_array[2])
                     if (player_one_multi == 28 || player_one_multi == 80 || player_one_multi == 162 || player_one_multi == 6 ||
                         player_one_multi == 120 || player_one_multi == 504 || player_one_multi == 105 || player_one_multi == 45) {
-
                         winner = player_details_array[0] + " " + "Wins "
                         winner_count = 0;
                         player_one_multi = 0;
@@ -342,6 +341,7 @@ const gameBoard = (function() {
                         winner_popup()
                     }
                 }
+                winner_count += 1;
             }
         })
     }
