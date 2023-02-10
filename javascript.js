@@ -258,31 +258,35 @@ const gameBoard = (function() {
         let winner_count = 0;
         //when part of the board is clicked
         sub_main.addEventListener("click", (e) => {
+            winner_count += 1;
             if (e.target.textContent == "") {
-
                 /*if game_turn _counter == 0, means player1's turn and get player1's marker
                 from player_details_array else it's player2's turn */
                 if (game_turn_counter == 0) {
                     e.target.textContent = player_details_array[1];
                     player_one_array.push(e.target.id)
                     console.log(player_one_array);
+                    console.log(game_turn_counter);
 
                     /*checks play mode's value, if it's single player(Vs computer), computer 
                     will automatically input it's random choice else will wait for player 2 */
                     if (player_mode_select == "single player") {
-                        choice = "1,2,3,4,5,6,7,8,9".split(",");
-                        computer_choice = choice[Math.floor(Math.random() * choice.length)];
-                        computer_target = document.getElementById(computer_choice)
-                        console.log(computer_choice);
-                        while (computer_target.textContent != "" && winner_count < 9) {
+                        setTimeout(() => {
+                            choice = "1,2,3,4,5,6,7,8,9".split(",");
                             computer_choice = choice[Math.floor(Math.random() * choice.length)];
                             computer_target = document.getElementById(computer_choice)
-                        }
+                            console.log(computer_choice);
+                            while (computer_target.textContent != "" && winner_count < 9) {
+                                computer_choice = choice[Math.floor(Math.random() * choice.length)];
+                                computer_target = document.getElementById(computer_choice)
+                            }
 
-                        computer_target.textContent = player_details_array[3]
-                        player_two_array.push(computer_choice)
-                        console.log(player_two_array);
-                        winner_count += 1;
+                            computer_target.textContent = player_details_array[3]
+                            player_two_array.push(computer_choice)
+                            console.log(player_two_array);
+                            winner_count += 1;
+                        }, 500);
+
 
                     } else {
                         game_turn_counter += 1;
@@ -290,13 +294,13 @@ const gameBoard = (function() {
 
                 } else {
                     e.target.textContent = player_details_array[3];
-                    game_turn_counter -= 1;
                     player_two_array.push(e.target.id)
+                    game_turn_counter -= 1;
                     console.log(player_two_array);
+                    console.log(game_turn_counter);
                 }
                 //game logic based on multiplication of all winning positions else log "It's a tie"
                 if (winner_count == 5) {
-
                     player_one_multi = multi(player_one_array[0], player_one_array[1], player_one_array[2])
                     if (player_one_multi == 28 || player_one_multi == 80 || player_one_multi == 162 || player_one_multi == 6 ||
                         player_one_multi == 120 || player_one_multi == 504 || player_one_multi == 105 || player_one_multi == 45) {
@@ -306,9 +310,13 @@ const gameBoard = (function() {
                         player_two_multi = 0;
                         player_one_array = []
                         player_two_array = []
-                        winner_popup()
+                        game_turn_counter = 0;
+                        setTimeout(() => {
+                            winner_popup()
+                        }, 1000);
                     }
-                } else if (winner_count == 6) {
+                }
+                if (winner_count == 6) {
                     player_one_multi = multi(player_one_array[0], player_one_array[1], player_one_array[2])
                     player_two_multi = multi(player_two_array[0], player_two_array[1], player_two_array[2])
                     console.log(player_one_multi, player_two_multi);
@@ -321,7 +329,10 @@ const gameBoard = (function() {
                         player_two_multi = 0;
                         player_one_array = []
                         player_two_array = []
-                        winner_popup()
+                        game_turn_counter = 0;
+                        setTimeout(() => {
+                            winner_popup()
+                        }, 1000);
                     } else if (player_two_multi == 28 || player_two_multi == 80 || player_two_multi == 162 || player_two_multi == 6 ||
                         player_two_multi == 120 || player_two_multi == 504 || player_two_multi == 105 || player_two_multi == 45) {
                         winner = player_details_array[2] + " " + "Wins"
@@ -330,7 +341,10 @@ const gameBoard = (function() {
                         player_two_multi = 0;
                         player_one_array = []
                         player_two_array = []
-                        winner_popup()
+                        game_turn_counter = 0;
+                        setTimeout(() => {
+                            winner_popup()
+                        }, 1000);
                     } else {
                         winner = "It's a tie"
                         winner_count = 0;
@@ -338,10 +352,12 @@ const gameBoard = (function() {
                         player_two_multi = 0;
                         player_one_array = []
                         player_two_array = []
-                        winner_popup()
+                        game_turn_counter = 0;
+                        setTimeout(() => {
+                            winner_popup()
+                        }, 1000);
                     }
                 }
-                winner_count += 1;
             }
         })
     }
@@ -368,7 +384,6 @@ const gameBoard = (function() {
     const restart = () => {
         sub_main.innerHTML = ""
         text_sub.innerHTML = ""
-        game_turn_counter = 0;
         overlay()
 
 
