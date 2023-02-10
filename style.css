@@ -1,13 +1,30 @@
 body {
     margin: 10px;
+    background-color: #00000021;
 }
 
 #choose_mode,
 #choose_marker,
-#player_form {
+#player_form,
+#popup_main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#popup_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 54px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+#popup_div {
+    margin-top: -151px;
 }
 
 #choose_mode_contents {
@@ -20,16 +37,19 @@ body {
     background-color: #0000002b;
     padding: 13px;
     border-radius: 10px;
+    z-index: 1;
 }
 
 #marker_contents {
-    background-color: orange;
-    padding: 15px;
+    background-color: #7f7665;
+    padding: 45px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 18%;
+    border-radius: 10px;
+    z-index: 1;
 }
 
 #marker_contents>button {
@@ -52,6 +72,10 @@ button:hover {
     background-color: orange;
 }
 
+h2 {
+    display: flex;
+}
+
 #marker_contents>div>button {
     width: 50%;
 }
@@ -66,28 +90,49 @@ button:hover {
     width: 35%;
     padding: 15px;
     border-radius: 10px;
+    z-index: 1;
 }
 
 #board {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+#text_sub {
+    display: flex;
+    gap: 94px;
 }
 
 #sub {
     display: flex;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#background_overlay {
+    position: fixed;
+    inset: 0;
+    background: #0000006e;
+    opacity: 0%;
+}
+
+#background_overlay.show {
+    opacity: 100%;
 }
 
 #first {
     border-style: solid;
     border-left-style: none;
+    border-right-style: none;
 }
 
 #first>div,
 #second>div,
 #third>div {
-    width: 34px;
-    height: 37px;
+    width: 42px;
+    height: 43px;
     border-bottom-style: solid;
     display: flex;
     justify-content: center;
@@ -101,4 +146,5 @@ button:hover {
 #third {
     border-style: solid;
     border-right-style: none;
+    border-left-style: none;
 }
