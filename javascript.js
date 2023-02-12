@@ -311,9 +311,7 @@ const gameBoard = (function() {
                         player_one_array = []
                         player_two_array = []
                         game_turn_counter = 0;
-                        setTimeout(() => {
-                            winner_popup()
-                        }, 1000);
+                        winner_popup()
                     }
                 }
                 if (winner_count == 6) {
@@ -330,9 +328,7 @@ const gameBoard = (function() {
                         player_one_array = []
                         player_two_array = []
                         game_turn_counter = 0;
-                        setTimeout(() => {
-                            winner_popup()
-                        }, 1000);
+                        winner_popup()
                     } else if (player_two_multi == 28 || player_two_multi == 80 || player_two_multi == 162 || player_two_multi == 6 ||
                         player_two_multi == 120 || player_two_multi == 504 || player_two_multi == 105 || player_two_multi == 45) {
                         winner = player_details_array[2] + " " + "Wins"
