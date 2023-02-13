@@ -36,10 +36,18 @@ const choose_mode = function() {
         // when clicked, player_mode_select == player mode selected
     two_players_mode.addEventListener("click", () => {
         player_mode_select = "two players"
+        two_players_mode.style.backgroundColor = "blue"
+        single_player_mode.style.backgroundColor = "#9e9e9e"
+        two_players_mode.style.color = "white"
+        single_player_mode.style.color = "black"
         selected()
     })
     single_player_mode.addEventListener("click", () => {
         player_mode_select = "single player"
+        two_players_mode.style.backgroundColor = "#9e9e9e"
+        single_player_mode.style.backgroundColor = "blue"
+        single_player_mode.style.color = "white"
+        two_players_mode.style.color = "black"
         selected()
     })
 

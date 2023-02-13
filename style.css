@@ -66,6 +66,7 @@ body {
 
 button {
     border-radius: 4px;
+    background-color: #9e9e9e;
 }
 
 button:hover {
